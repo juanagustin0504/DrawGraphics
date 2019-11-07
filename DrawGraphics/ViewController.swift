@@ -60,6 +60,24 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btnDrawCircle(_ sender: UIButton) {
+        UIGraphicsBeginImageContext(imgView.frame.size)
+        let context = UIGraphicsGetCurrentContext()!
+        
+        // Draw Ellipse
+        context.setLineWidth(2.0)
+        context.setStrokeColor(UIColor.red.cgColor)
+        context.addEllipse(in: CGRect(x: 50, y: 50, width: 200, height: 100))
+        context.strokePath()
+        
+        // Draw Circle
+        context.setLineWidth(5.0)
+        context.setStrokeColor(UIColor.green.cgColor)
+        
+        context.addEllipse(in: CGRect(x: 50, y: 200, width: 200, height: 200))
+        context.strokePath()
+        
+        imgView.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
     }
     
     @IBAction func btnDrawArc(_ sender: UIButton) {
