@@ -103,6 +103,43 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btnDrawFill(_ sender: UIButton) {
+        UIGraphicsBeginImageContext(imgView.frame.size)
+        let context = UIGraphicsGetCurrentContext()!
+        
+        // Draw Rectangle
+        context.setLineWidth(1.0)
+        context.setStrokeColor(UIColor.red.cgColor)
+        context.setFillColor(UIColor.red.cgColor)
+        
+        let rectangle = CGRect(x: 50, y: 50, width: 200, height: 100)
+        context.addRect(rectangle)
+        context.fill(rectangle)
+        context.strokePath()
+        
+        // Draw Circle
+        context.setLineWidth(1.0)
+        context.setStrokeColor(UIColor.blue.cgColor)
+        context.setFillColor(UIColor.blue.cgColor)
+        
+        let circle = CGRect(x: 50, y: 200, width: 200, height: 100)
+        context.addEllipse(in: circle)
+        context.fillEllipse(in: circle)
+        context.strokePath()
+        
+        // Draw Triangle
+        context.setLineWidth(1.0)
+        context.setStrokeColor(UIColor.green.cgColor)
+        context.setFillColor(UIColor.green.cgColor)
+        
+        context.move(to: CGPoint(x: 150, y: 350))
+        context.addLine(to: CGPoint(x: 250, y: 450))
+        context.addLine(to: CGPoint(x: 50, y: 450))
+        context.addLine(to: CGPoint(x: 150, y: 350))
+        context.fillPath()
+        context.strokePath()
+        
+        imgView.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
     }
     
 }
