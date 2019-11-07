@@ -45,6 +45,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btnDrawRectangle(_ sender: UIButton) {
+        UIGraphicsBeginImageContext(imgView.frame.size)
+        let context = UIGraphicsGetCurrentContext()!
+        
+        // Draw Rectangle
+        context.setLineWidth(2.0)
+        context.setStrokeColor(UIColor.red.cgColor)
+        
+        context.addRect(CGRect(x: 50, y: 100, width: 200, height: 200))
+        context.strokePath()
+        
+        imgView.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
     }
     
     @IBAction func btnDrawCircle(_ sender: UIButton) {
